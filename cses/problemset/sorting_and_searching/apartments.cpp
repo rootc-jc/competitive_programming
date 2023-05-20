@@ -1,16 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
-//yet to be solved
+
 int main()
 {
     int n = 0;
     int m = 0;
     int k = 0;
     int x = 0;
-    int x2 = 0;
-    int y = 0;
     int ans = 0;
-    vector<int> desired; // desired size
+    vector<int> desired;   // desired size
     vector<int> apartment; // apartment size
     cin >> n >> m >> k;
     for (int i = 0; i < n; i++)
@@ -25,6 +23,29 @@ int main()
     }
     sort(desired.begin(), desired.end());
     sort(apartment.begin(), apartment.end());
+    int ptr = 0;
+    int fake = 0;
+    while (ptr < desired.size())
+    {
+        while (fake < apartment.size() && apartment[fake] < desired[ptr] - k)
+        {
+            //cout<<desired[ptr]<<" "<<apartment[fake]<<"\n";
+            fake++;
+        }
+
+        if (fake < apartment.size() && (abs(desired[ptr] - apartment[fake]) <= k))
+        {
+            //cout<<desired[ptr]<<" "<<apartment[fake]<<"\n";
+            ptr++;
+            fake++;
+            ans++;
+        }
+        else
+        {
+            //cout<<desired[ptr]<<" "<<apartment[fake]<<"\n";
+            ptr++;
+        }
+    }
 
     cout << ans;
 }
