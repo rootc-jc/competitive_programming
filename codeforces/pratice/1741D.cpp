@@ -1,36 +1,38 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//wrong logic
-//to be updated
+// wrong logic
+// to be updated
 
-int flip(int start, int end, vector<int> a)
+void flip(vector<int> a, int start, int end)
 {
-    int count = 0;
-    int temp=0;
-    if (end - start == 1)
+    int temp[(end - start) / 2];
+    for (int i = 0; i < (end - start) / 2; i++)
     {
-        if (a[end] > a[start])
-        {
-            return count;
-        }
-        else
-        {
-            temp = a[end - 1];
-            a[end] = a[start];
-            a[start] = temp;
-            cout << "once\n";
-            count++;
-            return count;
-        }
+        temp[i] = a[(end - start) / 2 + i];
     }
-    else
+    for (int i = 0; i < end / 2; i++)
     {
-        cout << "entering\n";
-        count = count + flip(start, end / 2, a);
-        count = count + flip((end / 2) + 1, end, a);
-        return count;
+        a[(end - start) / 2 + i] = a[start + i];
     }
+    for (int i = 0; i < end / 2; i++)
+    {
+        a[start + i] = temp[i];
+    }
+}
+
+int arrange(int start, int end, vector<int> a)
+{
+    int count=0;
+    count = count + arrange(start,end/2,a);
+    count = count + arrange(end/2+1,end,a);
+
+    if (a[(end - start) / 2]!=a[(end - start) / 2 - 1])
+    {
+        flip(a,start,end);
+        count++;
+    }
+    return count;
 }
 
 int main()
@@ -44,14 +46,16 @@ int main()
     for (int i = 0; i < t; i++)
     {
         cin >> m;
-        for (int i = 0; i < m; i++)
+        for (int j = 0; j < m; j++)
         {
             cin >> x;
             p.push_back(x);
-            //n = n * 2;
         }
-        x = flip(0, m-1, p);
-        cout << x << "\n";
+        arrange(0, m, p);
+        for (int j = 0; j < m; j++)
+        {
+            cout << p[j] << " ";
+        }
         p.clear();
     }
 }
