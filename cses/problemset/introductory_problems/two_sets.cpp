@@ -11,38 +11,7 @@ int main(){
     else
     {
         cout<<"YES\n";
-        if (n%2==0)
-        {
-            cout<<n/2<<"\n";
-            for (int i = 1; i < n; i=i+2)
-            {
-                cout<<i<<" ";
-            }
-            cout<<"\n";
-            cout<<n/2<<"\n";
-            for (int i = 2; i < n; i=i+2)
-            {
-                cout<<i<<" ";
-            }
-            cout<<"\n";
-        }
-        else
-        {
-            cout<<n/2<<"\n";
-            for (int i = 1; i < n; i=i+2)
-            {
-                cout<<i<<" ";
-            }
-            cout<<"\n";
-            cout<<n/2 + 1<<"\n";
-            for (int i = 2; i < n; i=i+2)
-            {
-                cout<<i<<" ";
-            }
-            cout<<n;
-            cout<<"\n";
-        }
-        
+        // find a subset whose sum is n*(n+1)/2
     }
     
     
